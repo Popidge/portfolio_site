@@ -1,0 +1,478 @@
+@import "tailwindcss";
+
+/* ====================================
+   DESIGN TOKENS - Global Variables
+   ==================================== */
+
+@theme {
+  /* Base Colors - Semantic */
+  --color-background: #0a0a0a;
+  --color-foreground: #fafafa;
+  --color-muted: #71717a;
+  --color-border: #27272a;
+  
+  /* Accent Colors for Projects */
+  --color-accent-ai: #10b981;
+  --color-accent-automation: #f59e0b;
+  --color-accent-dataviz: #6366f1;
+  --color-accent-webdev: #ec4899;
+  --color-accent-vr: #8b5cf6;
+
+  /* Typography Scale */
+  --font-display: "Instrument Serif", Georgia, serif;
+  --font-sans: "Satoshi", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  
+  /* Animation Timing */
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
+  
+  /* Spacing Scale */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  --space-4xl: 6rem;
+  
+  /* Border Radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
+}
+
+/* ====================================
+   DESIGN 1: MINIMALIST TYPOGRAPHY
+   ==================================== */
+
+.design-1 {
+  --bg-primary: #FAF9F6;
+  --bg-secondary: #F5F3EF;
+  --text-primary: #1A1A1A;
+  --text-secondary: #4A4A4A;
+  --text-muted: #8A8A8A;
+  --accent-primary: #1A1A1A;
+  --accent-hover: #3A3A3A;
+  --border-subtle: #E5E3DE;
+}
+
+/* ====================================
+   DESIGN 2: CYBERPUNK NEON
+   ==================================== */
+
+.design-2 {
+  --bg-primary: #0D0D0D;
+  --bg-secondary: #141414;
+  --bg-card: #1A1A1A;
+  --text-primary: #FFFFFF;
+  --text-secondary: #B0B0B0;
+  --neon-pink: #FF00FF;
+  --neon-cyan: #00FFFF;
+  --neon-purple: #9D00FF;
+  --neon-green: #00FF66;
+  --grid-color: rgba(0, 255, 255, 0.05);
+  --scanline-opacity: 0.03;
+}
+
+/* ====================================
+   DESIGN 3: BRUTALIST RAW
+   ==================================== */
+
+.design-3 {
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F0F0F0;
+  --text-primary: #000000;
+  --text-secondary: #333333;
+  --accent-raw: #FF4500;
+  --accent-yellow: #FFD700;
+  --border-heavy: 3px solid #000000;
+  --border-thin: 1px solid #000000;
+}
+
+/* ====================================
+   DESIGN 4: GLASSMORPHISM
+   ==================================== */
+
+.design-4 {
+  --bg-gradient-start: #667eea;
+  --bg-gradient-mid: #764ba2;
+  --bg-gradient-end: #f093fb;
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  --blur-amount: 20px;
+  --text-light: #FFFFFF;
+  --text-soft: rgba(255, 255, 255, 0.8);
+}
+
+/* ====================================
+   DESIGN 5: INTERACTIVE PARTICLES
+   ==================================== */
+
+.design-5 {
+  --bg-dark: #050505;
+  --bg-subtle: #0A0A0A;
+  --particle-primary: #6366f1;
+  --particle-secondary: #a855f7;
+  --particle-tertiary: #ec4899;
+  --text-glow: #FFFFFF;
+  --line-color: rgba(99, 102, 241, 0.3);
+}
+
+/* ====================================
+   DESIGN 6: BAUHAUS
+   ==================================== */
+
+.design-6 {
+  --bg-primary: #F5F3EF;
+  --bg-secondary: #FFFFFF;
+  --text-primary: #1A1A1A;
+  --text-secondary: #666666;
+  --text-muted: #999999;
+  --bauhaus-red: #E63946;
+  --bauhaus-blue: #1D3557;
+  --bauhaus-yellow: #FFB703;
+  --bauhaus-black: #171717;
+  --grid-unit: 30px;
+}
+
+/* ====================================
+   DESIGN 8: BRUTALIST + BAUHAUS HYBRID
+   ==================================== */
+
+.design-8 {
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F5F3EF;
+  --text-primary: #000000;
+  --text-secondary: #333333;
+  --text-muted: #666666;
+  /* Brutalist accents */
+  --accent-raw: #FF4500;
+  --accent-yellow: #FFD700;
+  /* Bauhaus primary colors */
+  --bauhaus-red: #E63946;
+  --bauhaus-blue: #1D3557;
+  --bauhaus-yellow: #FFB703;
+  --bauhaus-black: #171717;
+  /* Borders */
+  --border-heavy: 4px solid #000000;
+  --border-thick: 8px solid #000000;
+}
+
+/* ====================================
+   DESIGN 9: VHS ANALOG AESTHETIC
+   Cohesive 5-Color Palette
+   ==================================== */
+
+.design-9 {
+  /* Primary 5-Color Palette */
+  --vhs-cinnabar: #F44336;
+  --vhs-shadow: #221D23;
+  --vhs-ocean: #0094C6;
+  --vhs-ghost: #EDEDF4;
+  --vhs-gold: #F3B61F;
+  
+  /* Background scale */
+  --bg-primary: #221D23;
+  --bg-secondary: #2a252b;
+  --bg-card: #323035;
+  
+  /* Text scale */
+  --text-primary: #EDEDF4;
+  --text-secondary: #b8b8c0;
+  --text-muted: #6a656b;
+  
+  /* Accent gradients */
+  --accent-cinnabar-gold: linear-gradient(135deg, #F44336 0%, #F3B61F 100%);
+  --accent-ocean-cinnabar: linear-gradient(135deg, #0094C6 0%, #F44336 100%);
+  --metallic-silver: linear-gradient(135deg, #a0a0a8 0%, #EDEDF4 50%, #a0a0a8 100%);
+  
+  /* Single accent colors for specific uses */
+  --accent-primary: #F44336;
+  --accent-secondary: #0094C6;
+  --accent-tertiary: #F3B61F;
+  
+  /* Analog effects */
+  --scanline-opacity: 0.03;
+  --noise-opacity: 0.04;
+  --chromatic-shift: 2px;
+}
+
+/* ====================================
+   DESIGN 7: SWISS / INTERNATIONAL
+   ==================================== */
+
+.design-7 {
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #FAFAFA;
+  --text-primary: #000000;
+  --text-secondary: #333333;
+  --text-muted: #999999;
+  --accent-red: #FF0000;
+  --grid-width: 1200px;
+  --column-gutter: 24px;
+}
+
+/* ====================================
+   BASE STYLES
+   ==================================== */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  body {
+    font-family: var(--font-sans), system-ui, sans-serif;
+    line-height: 1.6;
+  }
+  
+  ::selection {
+    background: var(--color-accent-dataviz);
+    color: white;
+  }
+}
+
+/* ====================================
+   UTILITY CLASSES
+   ==================================== */
+
+@layer utilities {
+  /* Text Gradient */
+  .text-gradient {
+    background: linear-gradient(135deg, var(--neon-pink) 0%, var(--neon-cyan) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Glow Effects */
+  .glow-pink {
+    box-shadow: 0 0 20px var(--neon-pink), 0 0 40px var(--neon-pink);
+  }
+  
+  .glow-cyan {
+    box-shadow: 0 0 20px var(--neon-cyan), 0 0 40px var(--neon-cyan);
+  }
+  
+  .text-glow-pink {
+    text-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink), 0 0 30px var(--neon-pink);
+  }
+  
+  .text-glow-cyan {
+    text-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan), 0 0 30px var(--neon-cyan);
+  }
+  
+  /* Glass Effect */
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--blur-amount));
+    -webkit-backdrop-filter: blur(var(--blur-amount));
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+  }
+  
+  /* Scanlines Overlay */
+  .scanlines::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, var(--scanline-opacity)) 0px,
+      rgba(0, 0, 0, var(--scanline-opacity)) 1px,
+      transparent 1px,
+      transparent 2px
+    );
+    pointer-events: none;
+  }
+  
+  /* Grid Background */
+  .grid-bg {
+    background-image: 
+      linear-gradient(var(--grid-color) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+  
+  /* Noise Texture */
+  .noise::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+  }
+  
+  /* Stagger Animation Delays */
+  .stagger-1 { animation-delay: 0.1s; }
+  .stagger-2 { animation-delay: 0.2s; }
+  .stagger-3 { animation-delay: 0.3s; }
+  .stagger-4 { animation-delay: 0.4s; }
+  .stagger-5 { animation-delay: 0.5s; }
+}
+
+/* ====================================
+   ANIMATIONS
+   ==================================== */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+    filter: hue-rotate(0deg);
+  }
+  10% {
+    transform: translate(-2px, 2px);
+    filter: hue-rotate(90deg);
+  }
+  20% {
+    transform: translate(2px, -2px);
+    filter: hue-rotate(180deg);
+  }
+  30% {
+    transform: translate(-2px, -2px);
+    filter: hue-rotate(270deg);
+  }
+  40% {
+    transform: translate(2px, 2px);
+    filter: hue-rotate(360deg);
+  }
+  50%, 100% {
+    transform: translate(0);
+    filter: hue-rotate(0deg);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.8s var(--ease-spring) forwards;
+  opacity: 0;
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.6s var(--ease-smooth) forwards;
+  opacity: 0;
+}
+
+.animate-slideInLeft {
+  animation: slideInLeft 0.8s var(--ease-spring) forwards;
+  opacity: 0;
+}
+
+.animate-slideInRight {
+  animation: slideInRight 0.8s var(--ease-spring) forwards;
+  opacity: 0;
+}
+
+.animate-glitch:hover {
+  animation: glitch 0.3s ease-in-out;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}
+
+.animate-rotate {
+  animation: rotate 20s linear infinite;
+}
+
+/* ====================================
+   SCROLLBAR STYLING
+   ==================================== */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-muted);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-foreground);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-muted) transparent;
+}

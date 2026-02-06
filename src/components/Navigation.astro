@@ -1,0 +1,138 @@
+---
+interface Props {
+  design: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+  currentPath?: string;
+}
+
+const { design, currentPath = '/' } = Astro.props;
+
+const designLinks = [
+  { href: '/1', label: '01', title: 'Minimalist' },
+  { href: '/2', label: '02', title: 'Cyberpunk' },
+  { href: '/3', label: '03', title: 'Brutalist' },
+  { href: '/4', label: '04', title: 'Glass' },
+  { href: '/5', label: '05', title: 'Particles' },
+  { href: '/6', label: '06', title: 'Bauhaus' },
+  { href: '/7', label: '07', title: 'Swiss' },
+  { href: '/8', label: '08', title: 'Hybrid' },
+  { href: '/9', label: '09', title: 'VHS' },
+];
+
+// Design-specific styles
+const navStyles = {
+  1: {
+    container: 'fixed top-0 left-0 right-0 z-50 py-6 px-8',
+    inner: 'max-w-6xl mx-auto flex justify-between items-center',
+    logo: 'font-[Instrument_Serif] text-xl text-[var(--text-primary)] italic',
+    links: 'flex gap-8 items-center',
+    link: 'text-sm tracking-widest text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors uppercase',
+    active: 'text-[var(--text-primary)]',
+  },
+  2: {
+    container: 'fixed top-0 left-0 right-0 z-50 py-4 px-6 border-b border-[var(--neon-cyan)]/20',
+    inner: 'max-w-7xl mx-auto flex justify-between items-center',
+    logo: 'font-[Orbitron] text-lg font-bold text-[var(--neon-cyan)] text-glow-cyan',
+    links: 'flex gap-6 items-center',
+    link: 'font-[Space_Mono] text-xs text-[var(--text-secondary)] hover:text-[var(--neon-pink)] hover:text-glow-pink transition-all uppercase tracking-wider',
+    active: 'text-[var(--neon-pink)] text-glow-pink',
+  },
+  3: {
+    container: 'fixed top-0 left-0 right-0 z-50 py-4 px-4 bg-white border-b-4 border-black',
+    inner: 'max-w-none flex justify-between items-center',
+    logo: 'font-[Archivo_Black] text-2xl text-black uppercase',
+    links: 'flex gap-4 items-center',
+    link: 'px-3 py-1 text-sm font-bold uppercase bg-black text-white hover:bg-[var(--accent-raw)] hover:text-black transition-colors',
+    active: 'bg-[var(--accent-raw)] text-black',
+  },
+  4: {
+    container: 'fixed top-4 left-4 right-4 z-50 py-4 px-6 rounded-2xl glass',
+    inner: 'max-w-6xl mx-auto flex justify-between items-center',
+    logo: 'font-[Plus_Jakarta_Sans] text-xl font-semibold text-white',
+    links: 'flex gap-6 items-center',
+    link: 'text-sm text-white/70 hover:text-white transition-colors',
+    active: 'text-white',
+  },
+  5: {
+    container: 'fixed top-0 left-0 right-0 z-50 py-6 px-8',
+    inner: 'max-w-7xl mx-auto flex justify-between items-center',
+    logo: 'font-[Syne] text-xl font-bold text-white',
+    links: 'flex gap-8 items-center',
+    link: 'text-sm text-white/50 hover:text-white transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-white hover:after:w-full after:transition-all',
+    active: 'text-white after:w-full',
+  },
+  6: {
+    container: 'fixed top-0 left-0 right-0 z-50 py-4 px-4 md:px-8 bg-[var(--bg-primary)] border-b-2 border-black',
+    inner: 'max-w-7xl mx-auto flex justify-between items-center',
+    logo: 'font-["Space_Grotesk"] text-xl font-bold uppercase tracking-tight',
+    links: 'flex gap-2 md:gap-4 items-center',
+    link: 'text-xs md:text-sm font-medium uppercase tracking-wider px-2 py-1 hover:bg-black hover:text-white transition-colors',
+    active: 'bg-black text-white',
+  },
+  7: {
+    container: 'fixed top-0 left-0 right-0 z-50 py-4 px-4 md:px-8 bg-white border-b border-black/10',
+    inner: 'max-w-[var(--grid-width)] mx-auto flex justify-between items-center',
+    logo: 'font-bold text-base uppercase tracking-[0.2em]',
+    links: 'flex gap-1 md:gap-2 items-center',
+    link: 'text-xs font-medium uppercase tracking-widest px-3 py-2 hover:text-[var(--accent-red)] transition-colors',
+    active: 'text-[var(--accent-red)]',
+  },
+  8: {
+    container: 'fixed top-0 left-0 right-0 z-50 py-4 px-4 bg-white border-b-4 border-black',
+    inner: 'max-w-none flex justify-between items-center',
+    logo: 'font-[Archivo_Black] text-2xl text-black uppercase',
+    links: 'flex gap-2 items-center',
+    link: 'px-3 py-1 text-sm font-bold uppercase bg-black text-white hover:bg-[var(--accent-raw)] hover:text-black transition-colors font-["Space_Grotesk"]',
+    active: 'bg-[var(--accent-raw)] text-black',
+  },
+  9: {
+    container: 'fixed top-0 left-0 right-0 z-50 py-4 px-4 md:px-8 bg-[var(--bg-primary)] border-b border-[var(--vhs-ghost)]/10',
+    inner: 'max-w-7xl mx-auto flex justify-between items-center',
+    logo: 'font-["Inter"] text-xl font-black text-[var(--text-primary)] uppercase tracking-wider',
+    links: 'flex gap-1 md:gap-2 items-center',
+    link: 'font-["JetBrains_Mono"] text-xs text-[var(--text-secondary)] hover:text-[var(--vhs-gold)] transition-colors px-2 py-1',
+    active: 'text-[var(--vhs-gold)] bg-[var(--bg-card)]',
+  },
+};
+
+const styles = navStyles[design];
+---
+
+<nav class={styles.container}>
+  <div class={styles.inner}>
+    <a href={`/${design}`} class={styles.logo}>
+      {design === 1 && 'Jamie Taylor'}
+      {design === 2 && 'JT_DEV'}
+      {design === 3 && 'J.TAYLOR'}
+      {design === 4 && 'jamie.'}
+      {design === 5 && 'JT'}
+      {design === 6 && 'JT'}
+      {design === 7 && 'JAMIE TAYLOR'}
+      {design === 8 && 'J.TAYLOR'}
+      {design === 9 && (
+        <span class="flex items-center gap-3">
+          <span class="flex gap-1">
+            {[...Array(4)].map((_, i) => (
+              <span class="w-2 h-2 rounded-full bg-[var(--vhs-cinnabar)]"></span>
+            ))}
+          </span>
+          <span>JAMIE TAYLOR</span>
+        </span>
+      )}
+    </a>
+    
+    <div class={styles.links}>
+      {designLinks.map((link) => (
+        <a 
+          href={link.href} 
+          class:list={[
+            styles.link,
+            currentPath === link.href && styles.active
+          ]}
+          title={link.title}
+        >
+          {link.label}
+        </a>
+      ))}
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,257 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+
+const experiences = [
+  { year: '2012', title: 'Chemistry BSc (Hons)', org: 'University of Leicester' },
+  { year: '2013', title: 'Civil Service Management', org: 'UK Government' },
+  { year: '2015', title: 'Broadcast Engineer', org: 'BBC Local Radio' },
+  { year: '2017', title: 'VR Operations', org: 'Immersive Tech' },
+  { year: '2019', title: 'IT Support Specialist', org: 'Enterprise' },
+  { year: '2024', title: 'AI-Native Developer', org: 'Freelance' },
+];
+
+const skills = [
+  { name: 'Python', level: '95%' },
+  { name: 'JavaScript', level: '90%' },
+  { name: 'React / Astro', level: '85%' },
+  { name: 'AI/ML', level: '88%' },
+  { name: 'Node.js', level: '82%' },
+  { name: 'TypeScript', level: '80%' },
+];
+---
+
+<BaseLayout title="Jamie Taylor — Swiss Design" design={7}>
+  <div class="min-h-screen bg-white text-black font-sans">
+    <Navigation design={7} currentPath="/7" />
+    
+    <!-- Hero Section - Asymmetric Grid -->
+    <header class="min-h-screen pt-24 pb-16 px-4 md:px-8 lg:px-12 flex flex-col justify-center">
+      <div class="max-w-[var(--grid-width)] mx-auto w-full">
+        <!-- Top Line -->
+        <div class="flex items-center gap-4 mb-8 animate-fadeInUp">
+          <div class="w-16 h-px bg-[var(--accent-red)]"></div>
+          <span class="text-xs uppercase tracking-[0.3em] text-[var(--text-muted)]">
+            Developer / Loughborough, UK
+          </span>
+        </div>
+        
+        <!-- Main Grid -->
+        <div class="grid md:grid-cols-12 gap-4 items-end">
+          {/* Large Typography - spans 8 columns */}
+          <div class="md:col-span-8 animate-fadeInUp stagger-1">
+            <h1 class="text-6xl md:text-8xl lg:text-9xl font-bold uppercase tracking-tighter leading-[0.85]">
+              JAMIE
+              <span class="block text-[var(--accent-red)]">TAYLOR</span>
+            </h1>
+          </div>
+          
+          {/* Side Info - spans 3 columns, offset by 1 */}
+          <div class="md:col-span-3 md:col-start-10 space-y-6 animate-fadeInUp stagger-2">
+            <p class="text-sm leading-relaxed text-[var(--text-secondary)]">
+              Building with code and AI. Creating functional, elegant solutions that solve real problems.
+            </p>
+            
+            <div class="space-y-2">
+              <span class="text-xs uppercase tracking-[0.3em] text-[var(--text-muted)] block">Focus</span>
+              <p class="text-sm font-medium">AI Integration</p>
+              <p class="text-sm font-medium">Web Development</p>
+              <p class="text-sm font-medium">Automation</p>
+            </div>
+            
+            <a 
+              href="#work" 
+              class="inline-block text-xs font-bold uppercase tracking-[0.3em] border-b-2 border-black pb-1 hover:text-[var(--accent-red)] hover:border-[var(--accent-red)] transition-colors"
+            >
+              View Work →
+            </a>
+          </div>
+        </div>
+        
+        {/* Bottom Stats */}
+        <div class="mt-24 grid grid-cols-2 md:grid-cols-4 gap-8 pt-8 border-t border-black/10 animate-fadeInUp stagger-3">
+          <div>
+            <span class="text-4xl md:text-5xl font-bold">12+</span>
+            <p class="text-xs uppercase tracking-[0.2em] text-[var(--text-muted)] mt-2">Years Experience</p>
+          </div>
+          <div>
+            <span class="text-4xl md:text-5xl font-bold">50+</span>
+            <p class="text-xs uppercase tracking-[0.2em] text-[var(--text-muted)] mt-2">Projects Built</p>
+          </div>
+          <div>
+            <span class="text-4xl md:text-5xl font-bold">6</span>
+            <p class="text-xs uppercase tracking-[0.2em] text-[var(--text-muted)] mt-2">Industries</p>
+          </div>
+          <div>
+            <span class="text-4xl md:text-5xl font-bold">∞</span>
+            <p class="text-xs uppercase tracking-[0.2em] text-[var(--text-muted)] mt-2">Curiosity</p>
+          </div>
+        </div>
+      </div>
+    </header>
+    
+    <!-- Work Section -->
+    <section id="work" class="py-24 px-4 md:px-8 lg:px-12 bg-[var(--bg-secondary)]">
+      <div class="max-w-[var(--grid-width)] mx-auto">
+        {/* Section Header */}
+        <div class="grid md:grid-cols-12 gap-4 mb-16">
+          <div class="md:col-span-2">
+            <span class="text-xs uppercase tracking-[0.3em] text-[var(--text-muted)]">01</span>
+            <div class="mt-2 w-8 h-px bg-[var(--accent-red)]"></div>
+          </div>
+          <div class="md:col-span-6">
+            <h2 class="text-4xl md:text-6xl font-bold uppercase tracking-tight">
+              Selected<br/>Work
+            </h2>
+          </div>
+          <div class="md:col-span-4 flex items-end">
+            <p class="text-sm text-[var(--text-secondary)] max-w-xs">
+              A collection of projects built with precision, functionality, and purpose.
+            </p>
+          </div>
+        </div>
+        
+        {/* Projects */}
+        <div>
+          {projects.map((project, index) => (
+            <ProjectCard project={project} design={7} index={index} />
+          ))}
+        </div>
+      </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="py-24 px-4 md:px-8 lg:px-12">
+      <div class="max-w-[var(--grid-width)] mx-auto">
+        <div class="grid md:grid-cols-12 gap-8">
+          {/* Left Column */}
+          <div class="md:col-span-5">
+            <span class="text-xs uppercase tracking-[0.3em] text-[var(--text-muted)]">02</span>
+            <div class="mt-2 w-8 h-px bg-[var(--accent-red)] mb-8"></div>
+            
+            <h2 class="text-4xl md:text-5xl font-bold uppercase tracking-tight mb-8">
+              Path &<br/>Principles
+            </h2>
+            
+            <div class="space-y-6 text-[var(--text-secondary)] leading-relaxed">
+              <p>
+                My career has been anything but linear. Chemistry degree. Civil service middle-management. 
+                BBC Local Radio. VR operations. IT support. Each role taught me to see systems differently.
+              </p>
+              <p>
+                Now I build with AI not because it's trending, but because it genuinely removes friction. 
+                Good tools should disappear into the background, letting ideas take center stage.
+              </p>
+            </div>
+          </div>
+          
+          {/* Spacer */}
+          <div class="md:col-span-2"></div>
+          
+          {/* Right Column - Timeline */}
+          <div class="md:col-span-5">
+            <p class="text-xs uppercase tracking-[0.3em] text-[var(--text-muted)] mb-8">Experience</p>
+            
+            <div class="space-y-0">
+              {experiences.map((exp, i) => (
+                <div class="flex gap-6 py-4 border-b border-black/5 group">
+                  <span class="text-xs font-mono text-[var(--text-muted)] w-12">{exp.year}</span>
+                  <div class="flex-1">
+                    <p class="font-medium uppercase tracking-wide group-hover:text-[var(--accent-red)] transition-colors">
+                      {exp.title}
+                    </p>
+                    <p class="text-xs text-[var(--text-muted)]">{exp.org}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Skills Section -->
+    <section class="py-24 px-4 md:px-8 lg:px-12 bg-black text-white">
+      <div class="max-w-[var(--grid-width)] mx-auto">
+        <div class="grid md:grid-cols-12 gap-8">
+          <div class="md:col-span-4">
+            <span class="text-xs uppercase tracking-[0.3em] text-white/40">03</span>
+            <div class="mt-2 w-8 h-px bg-[var(--accent-red)] mb-8"></div>
+            <h2 class="text-4xl font-bold uppercase tracking-tight">
+              Technical<br/>Skills
+            </h2>
+          </div>
+          
+          <div class="md:col-span-8">
+            <div class="grid md:grid-cols-2 gap-x-12 gap-y-8">
+              {skills.map((skill) => (
+                <div>
+                  <div class="flex justify-between mb-2">
+                    <span class="font-medium uppercase tracking-wider text-sm">{skill.name}</span>
+                    <span class="text-xs text-white/40">{skill.level}</span>
+                  </div>
+                  <div class="h-1 bg-white/10">
+                    <div 
+                      class="h-full bg-[var(--accent-red)]"
+                      style={`width: ${skill.level}`}
+                    ></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Philosophy Section -->
+    <section class="py-24 px-4 md:px-8 lg:px-12">
+      <div class="max-w-4xl mx-auto text-center">
+        <span class="text-xs uppercase tracking-[0.3em] text-[var(--text-muted)] mb-8 block">Philosophy</span>
+        
+        <blockquote>
+          <p class="text-3xl md:text-5xl font-bold uppercase tracking-tight leading-tight mb-8">
+            "The details are not the details.<br/>
+            <span class="text-[var(--accent-red)]">They make the design."</span>
+          </p>
+          <cite class="text-xs uppercase tracking-[0.3em] text-[var(--text-muted)]">
+            — Charles Eames
+          </cite>
+        </blockquote>
+      </div>
+    </section>
+    
+    <!-- Contact CTA -->
+    <section class="py-24 px-4 md:px-8 lg:px-12 bg-[var(--bg-secondary)]">
+      <div class="max-w-[var(--grid-width)] mx-auto">
+        <div class="grid md:grid-cols-12 gap-8 items-center">
+          <div class="md:col-span-8">
+            <h2 class="text-5xl md:text-7xl lg:text-8xl font-bold uppercase tracking-tighter">
+              Let's<br/>
+              <span class="text-[var(--accent-red)]">Connect</span>
+            </h2>
+          </div>
+          
+          <div class="md:col-span-4">
+            <p class="text-[var(--text-secondary)] mb-6">
+              Available for freelance projects and collaborations. Based in Loughborough, UK. Working globally.
+            </p>
+            <a 
+              href="mailto:hello@jamietaylor.dev" 
+              class="inline-block text-sm font-bold uppercase tracking-[0.3em] bg-black text-white px-8 py-4 hover:bg-[var(--accent-red)] transition-colors"
+            >
+              Get in Touch
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <Footer design={7} />
+  </div>
+</BaseLayout>

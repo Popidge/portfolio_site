@@ -1,0 +1,401 @@
+---
+interface Props {
+  design: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+}
+
+const { design } = Astro.props;
+
+const socials = [
+  { name: 'GitHub', url: 'https://github.com/jamietaylor', icon: 'github' },
+  { name: 'LinkedIn', url: 'https://linkedin.com/in/jamietaylor', icon: 'linkedin' },
+  { name: 'Twitter', url: 'https://twitter.com/jamietaylor', icon: 'twitter' },
+];
+
+const currentYear = new Date().getFullYear();
+---
+
+{design === 1 && (
+  <footer class="bg-[var(--bg-secondary)] py-20 px-8">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+        <div>
+          <h3 class="font-[Instrument_Serif] text-4xl text-[var(--text-primary)] italic mb-2">
+            Let's create something together.
+          </h3>
+          <p class="text-[var(--text-muted)]">
+            Loughborough, UK · Open to freelance opportunities
+          </p>
+        </div>
+        <div class="flex flex-col items-end gap-4">
+          <div class="flex gap-6">
+            {socials.map((social) => (
+              <a 
+                href={social.url} 
+                class="text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors uppercase text-xs tracking-widest"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {social.name}
+              </a>
+            ))}
+          </div>
+          <p class="text-xs text-[var(--text-muted)]">
+            © {currentYear} Jamie Taylor. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+)}
+
+{design === 2 && (
+  <footer class="relative bg-[var(--bg-secondary)] border-t border-[var(--neon-cyan)]/20 py-12 px-6 overflow-hidden">
+    <!-- Scanlines overlay -->
+    <div class="absolute inset-0 scanlines pointer-events-none"></div>
+    
+    <div class="max-w-7xl mx-auto relative z-10">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+        <div class="text-center md:text-left">
+          <p class="font-[Orbitron] text-xs text-[var(--neon-cyan)] tracking-[0.3em] mb-2">
+            SIGNAL_ORIGIN
+          </p>
+          <p class="font-[Space_Mono] text-[var(--text-secondary)] text-sm">
+            LOUGHBOROUGH.UK // LAT: 52.7721° N // LONG: 1.2063° W
+          </p>
+        </div>
+        
+        <div class="flex gap-4">
+          {socials.map((social) => (
+            <a 
+              href={social.url} 
+              class="w-10 h-10 border border-[var(--neon-pink)]/50 flex items-center justify-center text-[var(--neon-pink)] hover:bg-[var(--neon-pink)] hover:text-black transition-all font-[Space_Mono] text-xs"
+              target="_blank"
+              rel="noopener noreferrer"
+              title={social.name}
+            >
+              {social.name.slice(0, 2).toUpperCase()}
+            </a>
+          ))}
+        </div>
+        
+        <p class="font-[Space_Mono] text-xs text-[var(--text-secondary)]">
+          &lt;/&gt; {currentYear}
+        </p>
+      </div>
+    </div>
+  </footer>
+)}
+
+{design === 3 && (
+  <footer class="bg-black text-white py-8 px-4">
+    <div class="border-4 border-white p-8">
+      <div class="flex flex-col md:flex-row justify-between items-start gap-8">
+        <div>
+          <p class="font-[Archivo_Black] text-4xl md:text-6xl uppercase mb-4">
+            GET IN TOUCH
+          </p>
+          <p class="text-lg uppercase tracking-wider">
+            LOUGHBOROUGH, UNITED KINGDOM
+          </p>
+        </div>
+        
+        <div class="flex flex-col gap-2">
+          {socials.map((social) => (
+            <a 
+              href={social.url} 
+              class="inline-block bg-[var(--accent-raw)] text-black px-4 py-2 font-bold uppercase hover:bg-white transition-colors"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              → {social.name}
+            </a>
+          ))}
+        </div>
+      </div>
+      
+      <div class="mt-8 pt-8 border-t-4 border-white flex justify-between items-center">
+        <p class="uppercase font-bold">Jamie Taylor © {currentYear}</p>
+        <p class="uppercase text-sm">No cookies. No tracking. Just code.</p>
+      </div>
+    </div>
+  </footer>
+)}
+
+{design === 4 && (
+  <footer class="relative py-16 px-8">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="glass rounded-3xl p-12 mb-8">
+        <h3 class="font-[Plus_Jakarta_Sans] text-3xl font-bold text-white mb-4">
+          Let's build something beautiful
+        </h3>
+        <p class="text-white/60 mb-8">
+          Based in Loughborough, UK · Available for freelance projects
+        </p>
+        
+        <div class="flex justify-center gap-4">
+          {socials.map((social) => (
+            <a 
+              href={social.url} 
+              class="px-6 py-3 rounded-full glass text-white/80 hover:text-white hover:scale-105 transition-all"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {social.name}
+            </a>
+          ))}
+        </div>
+      </div>
+      
+      <p class="text-white/40 text-sm">
+        Designed & built with care · © {currentYear} Jamie Taylor
+      </p>
+    </div>
+  </footer>
+)}
+
+{design === 5 && (
+  <footer class="relative py-20 px-8 bg-[var(--bg-subtle)]">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-12">
+        <div class="text-center md:text-left">
+          <p class="font-[Syne] text-6xl font-bold text-white mb-4 animate-float">
+            JT
+          </p>
+          <p class="text-white/40">
+            Loughborough, UK
+          </p>
+        </div>
+        
+        <div class="flex flex-col items-center md:items-end gap-6">
+          <div class="flex gap-8">
+            {socials.map((social) => (
+              <a 
+                href={social.url} 
+                class="text-white/50 hover:text-white transition-colors relative group"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span class="relative z-10">{social.name}</span>
+                <span class="absolute inset-0 bg-gradient-to-r from-[var(--particle-primary)] to-[var(--particle-secondary)] opacity-0 group-hover:opacity-20 blur-xl transition-opacity"></span>
+              </a>
+            ))}
+          </div>
+          
+          <p class="text-white/30 text-sm">
+            © {currentYear} · Built with curiosity
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+)}
+
+{design === 6 && (
+  <footer class="bg-[var(--bauhaus-black)] text-white py-16 px-4 md:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid md:grid-cols-3 gap-8 mb-12">
+        {/* Logo/Name */}
+        <div>
+          <p class="font-['Space_Grotesk'] text-4xl font-bold mb-4">JT</p>
+          <p class="text-white/60 uppercase tracking-widest text-sm">
+            Functional Design<br/>Loughborough, UK
+          </p>
+        </div>
+        
+        {/* Contact */}
+        <div>
+          <p class="text-xs uppercase tracking-widest text-[var(--bauhaus-yellow)] mb-4">Contact</p>
+          <a
+            href="mailto:hello@jamietaylor.dev"
+            class="text-lg hover:text-[var(--bauhaus-yellow)] transition-colors"
+          >
+            hello@jamietaylor.dev
+          </a>
+        </div>
+        
+        {/* Socials */}
+        <div>
+          <p class="text-xs uppercase tracking-widest text-[var(--bauhaus-red)] mb-4">Connect</p>
+          <div class="flex gap-4">
+            {socials.map((social) => (
+              <a
+                href={social.url}
+                class="w-10 h-10 border border-white/30 flex items-center justify-center hover:bg-[var(--bauhaus-blue)] hover:border-[var(--bauhaus-blue)] transition-all"
+                target="_blank"
+                rel="noopener noreferrer"
+                title={social.name}
+              >
+                <span class="text-xs font-bold">{social.name.slice(0, 1)}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+      
+      {/* Bottom Bar */}
+      <div class="flex items-center justify-between pt-8 border-t border-white/10">
+        <p class="text-sm text-white/40">
+          © {currentYear} Jamie Taylor. All rights reserved.
+        </p>
+        <div class="flex gap-2">
+          <div class="w-4 h-4 bg-[var(--bauhaus-red)]"></div>
+          <div class="w-4 h-4 bg-[var(--bauhaus-blue)]"></div>
+          <div class="w-4 h-4 bg-[var(--bauhaus-yellow)]"></div>
+        </div>
+      </div>
+    </div>
+  </footer>
+)}
+
+{design === 7 && (
+  <footer class="bg-white border-t border-black py-12 px-4 md:px-8">
+    <div class="max-w-[var(--grid-width)] mx-auto">
+      <div class="grid md:grid-cols-12 gap-8">
+        {/* Left - Large Text */}
+        <div class="md:col-span-6">
+          <p class="text-5xl md:text-7xl font-bold uppercase tracking-tighter leading-[0.9] mb-4">
+            LET'S<br/>WORK
+          </p>
+          <p class="text-sm uppercase tracking-widest text-[var(--text-muted)]">
+            Loughborough, United Kingdom
+          </p>
+        </div>
+        
+        {/* Right - Links */}
+        <div class="md:col-span-3 md:col-start-10">
+          <p class="text-xs uppercase tracking-[0.3em] text-[var(--accent-red)] mb-4">Social</p>
+          <div class="space-y-2">
+            {socials.map((social) => (
+              <a
+                href={social.url}
+                class="block text-sm font-medium uppercase tracking-wider hover:text-[var(--accent-red)] transition-colors"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {social.name}
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+      
+      {/* Bottom */}
+      <div class="mt-16 pt-8 border-t border-black/10 flex justify-between items-center">
+        <p class="text-xs uppercase tracking-widest text-[var(--text-muted)]">
+          © {currentYear} Jamie Taylor
+        </p>
+        <p class="text-xs uppercase tracking-widest text-[var(--text-muted)]">
+          Precision in every pixel
+        </p>
+      </div>
+    </div>
+  </footer>
+)}
+
+{design === 8 && (
+  <footer class="bg-black text-white py-16 px-4 md:px-8">
+    <div class="border-4 border-white p-8">
+      <div class="flex flex-col md:flex-row justify-between items-start gap-8 mb-8">
+        <div>
+          <p class="font-[Archivo_Black] text-4xl md:text-6xl uppercase mb-4">
+            GET IN TOUCH
+          </p>
+          <p class="text-lg uppercase tracking-wider font-['Space_Grotesk']">
+            LOUGHBOROUGH, UNITED KINGDOM
+          </p>
+        </div>
+        
+        <div class="flex flex-col gap-2">
+          {socials.map((social) => (
+            <a
+              href={social.url}
+              class="inline-block bg-[var(--accent-raw)] text-black px-4 py-2 font-bold uppercase hover:bg-[var(--bauhaus-yellow)] transition-colors font-['Space_Grotesk']"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              → {social.name}
+            </a>
+          ))}
+        </div>
+      </div>
+      
+      {/* Geometric accent */}
+      <div class="flex items-center gap-4 mb-8">
+        <div class="w-12 h-12 bg-[var(--bauhaus-red)] rotate-45"></div>
+        <div class="flex-1 h-2 bg-[var(--bauhaus-blue)]"></div>
+        <div class="w-12 h-12 bg-[var(--bauhaus-yellow)] rounded-full"></div>
+      </div>
+      
+      <div class="mt-8 pt-8 border-t-4 border-white flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="uppercase font-bold font-['Space_Grotesk']">Jamie Taylor © {currentYear}</p>
+        <p class="uppercase text-sm font-['Space_Grotesk']">No cookies. No tracking. Just code.</p>
+      </div>
+    </div>
+  </footer>
+)}
+
+{design === 9 && (
+  <footer class="bg-[var(--bg-primary)] text-[var(--text-primary)] py-12 px-4 md:px-8 relative">
+    {/* Accent stripe at top */}
+    <div class="absolute top-0 left-0 w-full h-2 bg-[var(--vhs-cinnabar)]"></div>
+    
+    <div class="max-w-6xl mx-auto pt-8">
+      {/* Top section */}
+      <div class="flex flex-col md:flex-row justify-between items-start gap-8 mb-8">
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <span class="font-['JetBrains_Mono'] text-xs text-[var(--vhs-cinnabar)]">VHS</span>
+            <div class="flex gap-1">
+              {[...Array(5)].map((_, i) => (
+                <span class="w-2 h-2 rounded-full bg-[var(--vhs-cinnabar)]"></span>
+              ))}
+            </div>
+          </div>
+          <p class="font-['Inter'] font-black text-3xl md:text-4xl uppercase tracking-tight mb-2">
+            JAMIE TAYLOR
+          </p>
+          <p class="font-['JetBrains_Mono'] text-xs text-[var(--text-muted)]">
+            E-120 HR // SUPER HIGH GRADE
+          </p>
+        </div>
+        
+        <div class="text-right">
+          <span class="font-['Noto_Sans_JP'] text-xs text-[var(--text-muted)] block mb-2">ソーシャル</span>
+          <div class="flex gap-3">
+            {socials.map((social) => (
+              <a
+                href={social.url}
+                class="px-3 py-2 border border-[var(--text-muted)]/30 font-['JetBrains_Mono'] text-xs text-[var(--text-secondary)] hover:border-[var(--vhs-gold)] hover:text-[var(--vhs-gold)] transition-colors"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {social.name}
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+      
+      {/* Technical info bar */}
+      <div class="border-t border-b border-[var(--text-muted)]/20 py-4 mb-8">
+        <div class="flex flex-wrap justify-between items-center gap-4 text-xs font-['JetBrains_Mono'] text-[var(--text-muted)]">
+          <span>LOC: LOUGHBOROUGH, UK</span>
+          <span>LAT: 52.7721° N</span>
+          <span>LONG: 1.2063° W</span>
+          <span>STATUS: AVAILABLE</span>
+          <span>FORMAT: FULL STACK</span>
+        </div>
+      </div>
+      
+      {/* Bottom */}
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="font-['JetBrains_Mono'] text-xs text-[var(--text-muted)]">
+          © {currentYear} // JT-DEV-001
+        </p>
+        <p class="font-['Noto_Sans_JP'] text-xs text-[var(--text-muted)]">
+          プロフェッショナル録画再生
+        </p>
+      </div>
+    </div>
+  </footer>
+)}
