@@ -8,13 +8,13 @@ excerpt: "A post about some early-stage research into defining a natural languge
 
 ## AI in research
 
-If you've seen my (Journal of AI Slop)[https://journalofaislop.com] project, you'll know I have **opinions** on the use of AI in academic research. Put your pitchforks down, I'm not about to get all old-fashioned on you.
+If you've seen my [Journal of AI Slop](https://journalofaislop.com) project, you'll know I have **opinions** on the use of AI in academic research. Put your pitchforks down, I'm not about to get all old-fashioned on you.
 
 I think AI in research is a powerful accelerator, but it's current misuse, lack of transparency and general attitude towards it needs a lot of work.
 
 When I created the Journal, part of the idea behind it was to hold up a mirror to modern-day academia - tired grad students, overstretched supervisors, all using AI in a *hush-hush*, cloak-and-dagger way, spending more time trying to hide it than actually addressing how to use it **responsibly**. By simultaneously having a low bar to entry (anyone can publish), with one strict enforcement (your submission must credit an AI as an author/co-author), it made a ludicrous statement for transparency in the AI age. Having AI models then publically peer-review the contributions, with the only real rigour being "is it AI Slop?" - that was just plain funny.
 
-I finally had an opportunity to put my money where my mouth was with a recent bit of research into AI-generated code, leading to me (authoring a whitepaper)[https://doi.org/10.5281/zenodo.18528387] and including the following statement:
+I finally had an opportunity to put my money where my mouth was with a recent bit of research into AI-generated code, leading to me [authoring a whitepaper](https://doi.org/10.5281/zenodo.18528387) and including the following statement:
 
 ```
 AI Assistance Transparency Statement
@@ -105,9 +105,9 @@ So, from early testing - **yes**. There's still a lot mroe to look at - covering
 
 ## Read the whitepaper.
 
-A working preprint is (available on Zenodo)[https://doi.org/10.5281/zenodo.18528387] now. I'm currently looking for endorsement from anyone able to on the cs.SE/cs.AI areas of arXiv - get in touch if you think you can help!
+A working preprint is [available on Zenodo](https://doi.org/10.5281/zenodo.18528387) now. I'm currently looking for endorsement from anyone able to on the cs.SE/cs.AI areas of arXiv - get in touch if you think you can help!
 
-The code and pre-trained adapters are available on (github)[https://github.com/popidge/redox]. Contributions welcome!
+The code and pre-trained adapters are available on [github](https://github.com/popidge/redox). Contributions welcome!
 
 ---
 
