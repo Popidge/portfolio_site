@@ -3,121 +3,68 @@ import type { CollectionEntry } from 'astro:content';
 
 interface Props {
   project: CollectionEntry<'projects'>;
-  design: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
   index?: number;
 }
 
-const { project, design, index = 0 } = Astro.props;
+const { project, index = 0 } = Astro.props;
 const { data, slug } = project;
-
-const categoryIcons = {
-  'AI': '🤖',
-  'Web Dev': '🌐',
-  'Automation': '⚡',
-  'Data Viz': '📊',
-  'VR': '🥽',
-};
 ---
 
-{/* Design 1: Minimalist Typography Card */}
-{design === 1 && (
-  <article 
-    class="group border-b border-[var(--border-subtle)] py-12 animate-fadeInUp"
-    style={`animation-delay: ${index * 0.1}s`}
-  >
-    <div class="flex flex-col md:flex-row md:items-start gap-6">
-      <div class="md:w-1/4">
-        <span class="text-xs uppercase tracking-widest text-[var(--text-muted)]">
-          {data.category}
-        </span>
-      </div>
-      
-      <div class="md:w-3/4">
-        <h3 class="font-[Instrument_Serif] text-3xl md:text-4xl text-[var(--text-primary)] mb-4 group-hover:italic transition-all">
-          {data.title}
-        </h3>
-        
-        <p class="text-[var(--text-secondary)] mb-6 leading-relaxed">
-          {data.description}
-        </p>
-        
-        <div class="flex flex-wrap gap-2 mb-6">
-          {data.technologies.slice(0, 4).map((tech) => (
-            <span class="text-xs uppercase tracking-wider text-[var(--text-muted)] border border-[var(--border-subtle)] px-3 py-1">
-              {tech}
-            </span>
-          ))}
-        </div>
-        
-        <div class="flex gap-6">
-          {data.github && (
-            <a 
-              href={data.github} 
-              class="text-sm uppercase tracking-widest text-[var(--text-primary)] hover:text-[var(--text-muted)] transition-colors"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              View Code →
-            </a>
-          )}
-          {data.demo && (
-            <a 
-              href={data.demo} 
-              class="text-sm uppercase tracking-widest text-[var(--text-primary)] hover:text-[var(--text-muted)] transition-colors"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Live Demo →
-            </a>
-          )}
-        </div>
-      </div>
+<article
+  class="group bg-[var(--bg-card)] border-2 border-[var(--text-muted)]/30 animate-fadeInUp hover:border-[var(--color-vhs-gold)] transition-colors"
+  style={`animation-delay: ${index * 0.1}s`}
+>
+  {/* VHS Header */}
+  <div class="border-b-2 border-[var(--text-muted)]/30 p-4 flex justify-between items-center bg-[var(--bg-secondary)]">
+    <div class="flex items-center gap-3">
+      <span class="font-['JetBrains_Mono'] text-xs text-[var(--color-vhs-cinnabar)]">VHS</span>
+      <span class="font-['Inter'] font-bold text-sm text-[var(--text-primary)]">{String(index + 1).padStart(2, '0')}</span>
     </div>
-  </article>
-)}
-
-{/* Design 2: Cyberpunk Neon Card */}
-{design === 2 && (
-  <article 
-    class="group relative bg-[var(--bg-card)] border border-[var(--neon-cyan)]/20 p-6 hover:border-[var(--neon-pink)] transition-all duration-300 animate-fadeInUp"
-    style={`animation-delay: ${index * 0.15}s`}
-  >
-    {/* Corner decorations */}
-    <div class="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-[var(--neon-cyan)]"></div>
-    <div class="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-[var(--neon-cyan)]"></div>
-    <div class="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-[var(--neon-cyan)]"></div>
-    <div class="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-[var(--neon-cyan)]"></div>
+    <span class="font-['JetBrains_Mono'] text-xs text-[var(--text-muted)]">E-120</span>
+  </div>
+  
+  {/* Cover Image Area */}
+  <div class="relative aspect-video bg-black overflow-hidden">
+    {/* Placeholder for project image - using gradient as fallback */}
+    <div class="absolute inset-0" style={`background: linear-gradient(135deg, ${index % 2 === 0 ? 'var(--color-vhs-ocean)' : 'var(--color-vhs-cinnabar)'} 0%, var(--bg-primary) 100%); opacity: 0.5;`}></div>
     
-    <div class="flex items-center gap-2 mb-4">
-      <span class="font-[Space_Mono] text-xs text-[var(--neon-pink)]">
-        [{String(index + 1).padStart(2, '0')}]
-      </span>
-      <span class="font-[Space_Mono] text-xs text-[var(--neon-cyan)] tracking-widest">
-        {data.category.toUpperCase().replace(' ', '_')}
-      </span>
+    {/* Project title overlay */}
+    <div class="absolute inset-0 flex items-center justify-center p-6">
+      <h3 class="font-['Inter'] font-black text-xl md:text-2xl text-white uppercase text-center leading-tight drop-shadow-lg">
+        {data.title}
+      </h3>
     </div>
     
-    <h3 class="font-[Orbitron] text-xl text-white mb-3 group-hover:text-[var(--neon-pink)] group-hover:text-glow-pink transition-all">
-      {data.title}
-    </h3>
+    {/* Scanline overlay */}
+    <div class="absolute inset-0" style="background: repeating-linear-gradient(0deg, rgba(0,0,0,0.3) 0px, transparent 1px, transparent 3px); background-size: 100% 4px;"></div>
     
-    <p class="font-[Space_Mono] text-sm text-[var(--text-secondary)] mb-4 line-clamp-3">
+    {/* Category badge */}
+    <div class="absolute top-2 right-2 px-2 py-1 bg-[var(--color-vhs-cinnabar)] text-white font-['JetBrains_Mono'] text-xs">
+      {data.category.toUpperCase()}
+    </div>
+  </div>
+  
+  {/* Content */}
+  <div class="p-4">
+    <p class="font-['Inter'] text-sm text-[var(--text-secondary)] mb-4 line-clamp-2">
       {data.description}
     </p>
     
+    {/* Tech specs */}
     <div class="flex flex-wrap gap-2 mb-4">
-      {data.technologies.map((tech) => (
-        <span class="font-[Space_Mono] text-[10px] text-[var(--neon-green)] border border-[var(--neon-green)]/30 px-2 py-0.5">
+      {data.technologies.slice(0, 3).map((tech: string) => (
+        <span class="font-['JetBrains_Mono'] text-xs text-[var(--color-vhs-gold)] bg-[var(--bg-primary)] px-2 py-1 border border-[var(--text-muted)]/20">
           {tech}
         </span>
       ))}
     </div>
     
-    <div class="flex gap-4 pt-4 border-t border-[var(--neon-cyan)]/10">
+    {/* Links */}
+    <div class="flex gap-3 pt-3 border-t border-[var(--text-muted)]/20">
       {data.github && (
-        <a 
-          href={data.github} 
-          class="font-[Space_Mono] text-xs text-[var(--neon-cyan)] hover:text-glow-cyan transition-all"
+        <a
+          href={data.github}
+          class="font-['JetBrains_Mono'] text-xs text-[var(--text-muted)] hover:text-[var(--color-vhs-gold)] transition-colors"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -125,463 +72,18 @@ const categoryIcons = {
         </a>
       )}
       {data.demo && (
-        <a 
-          href={data.demo} 
-          class="font-[Space_Mono] text-xs text-[var(--neon-pink)] hover:text-glow-pink transition-all"
+        <a
+          href={data.demo}
+          class="font-['JetBrains_Mono'] text-xs text-[var(--text-muted)] hover:text-[var(--color-vhs-gold)] transition-colors"
           target="_blank"
           rel="noopener noreferrer"
         >
-          [DEPLOY]
+          [PLAY]
         </a>
       )}
     </div>
-    
-    {/* Glow effect on hover */}
-    <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" style="box-shadow: inset 0 0 30px rgba(255, 0, 255, 0.1);"></div>
-  </article>
-)}
-
-{/* Design 3: Brutalist Raw Card */}
-{design === 3 && (
-  <article 
-    class="group bg-white border-4 border-black p-0 hover:translate-x-2 hover:-translate-y-2 transition-transform duration-150 animate-slideInLeft"
-    style={`animation-delay: ${index * 0.1}s; box-shadow: 8px 8px 0 0 black;`}
-  >
-    <div class="border-b-4 border-black p-4 bg-[var(--accent-raw)] flex justify-between items-center">
-      <span class="font-[Archivo_Black] text-lg uppercase">
-        {String(index + 1).padStart(2, '0')}
-      </span>
-      <span class="font-bold uppercase text-sm">
-        {data.category}
-      </span>
-    </div>
-    
-    <div class="p-6">
-      <h3 class="font-[Archivo_Black] text-2xl md:text-3xl uppercase mb-4 leading-tight">
-        {data.title}
-      </h3>
-      
-      <p class="text-lg mb-6 leading-snug">
-        {data.description}
-      </p>
-      
-      <div class="flex flex-wrap gap-2 mb-6">
-        {data.technologies.map((tech) => (
-          <span class="bg-black text-white px-3 py-1 text-sm font-bold uppercase">
-            {tech}
-          </span>
-        ))}
-      </div>
-      
-      <div class="flex gap-4">
-        {data.github && (
-          <a 
-            href={data.github} 
-            class="inline-block border-4 border-black px-4 py-2 font-bold uppercase hover:bg-black hover:text-white transition-colors"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            CODE →
-          </a>
-        )}
-        {data.demo && (
-          <a 
-            href={data.demo} 
-            class="inline-block bg-[var(--accent-yellow)] border-4 border-black px-4 py-2 font-bold uppercase hover:bg-black hover:text-[var(--accent-yellow)] transition-colors"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            DEMO →
-          </a>
-        )}
-      </div>
-    </div>
-  </article>
-)}
-
-{/* Design 4: Glassmorphism Card */}
-{design === 4 && (
-  <article 
-    class="group glass rounded-2xl p-6 hover:scale-[1.02] transition-transform duration-300 animate-fadeInUp"
-    style={`animation-delay: ${index * 0.12}s`}
-  >
-    <div class="flex items-center gap-3 mb-4">
-      <span class="text-2xl">{categoryIcons[data.category]}</span>
-      <span class="font-[Plus_Jakarta_Sans] text-xs font-medium text-white/60 uppercase tracking-wider">
-        {data.category}
-      </span>
-    </div>
-    
-    <h3 class="font-[Plus_Jakarta_Sans] text-xl font-bold text-white mb-3">
-      {data.title}
-    </h3>
-    
-    <p class="text-white/70 text-sm mb-4 line-clamp-3">
-      {data.description}
-    </p>
-    
-    <div class="flex flex-wrap gap-2 mb-4">
-      {data.technologies.slice(0, 4).map((tech) => (
-        <span class="text-xs text-white/60 bg-white/10 rounded-full px-3 py-1">
-          {tech}
-        </span>
-      ))}
-    </div>
-    
-    <div class="flex gap-3 pt-4 border-t border-white/10">
-      {data.github && (
-        <a 
-          href={data.github} 
-          class="flex-1 text-center py-2 rounded-lg bg-white/10 text-white/80 text-sm hover:bg-white/20 transition-colors"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Code
-        </a>
-      )}
-      {data.demo && (
-        <a 
-          href={data.demo} 
-          class="flex-1 text-center py-2 rounded-lg bg-white/20 text-white text-sm hover:bg-white/30 transition-colors"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Demo
-        </a>
-      )}
-    </div>
-  </article>
-)}
-
-{/* Design 5: Particles/Floating Card */}
-{design === 5 && (
-  <article 
-    class="group relative bg-gradient-to-br from-white/5 to-white/0 rounded-xl p-6 border border-white/10 hover:border-[var(--particle-primary)]/50 transition-all duration-500 animate-fadeInUp"
-    style={`animation-delay: ${index * 0.15}s`}
-  >
-    {/* Gradient glow on hover */}
-    <div class="absolute inset-0 rounded-xl bg-gradient-to-r from-[var(--particle-primary)]/10 via-[var(--particle-secondary)]/10 to-[var(--particle-tertiary)]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none blur-xl"></div>
-    
-    <div class="relative z-10">
-      <div class="flex items-center justify-between mb-4">
-        <span class="font-[Syne] text-xs font-medium text-white/40 uppercase tracking-widest">
-          {data.category}
-        </span>
-        <div 
-          class="w-3 h-3 rounded-full animate-pulse"
-          style={`background-color: ${data.accentColor}`}
-        ></div>
-      </div>
-      
-      <h3 class="font-[Syne] text-2xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-[var(--particle-primary)] group-hover:via-[var(--particle-secondary)] group-hover:to-[var(--particle-tertiary)] group-hover:bg-clip-text transition-all duration-300">
-        {data.title}
-      </h3>
-      
-      <p class="text-white/50 text-sm mb-6 leading-relaxed">
-        {data.description}
-      </p>
-      
-      <div class="flex flex-wrap gap-2 mb-6">
-        {data.technologies.map((tech, i) => (
-          <span 
-            class="text-xs text-white/40 border border-white/10 rounded-full px-3 py-1 hover:border-white/30 hover:text-white/60 transition-all"
-          >
-            {tech}
-          </span>
-        ))}
-      </div>
-      
-      <div class="flex gap-4">
-        {data.github && (
-          <a 
-            href={data.github} 
-            class="text-sm text-white/60 hover:text-white relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-gradient-to-r after:from-[var(--particle-primary)] after:to-[var(--particle-secondary)] hover:after:w-full after:transition-all"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Source Code
-          </a>
-        )}
-        {data.demo && (
-          <a 
-            href={data.demo} 
-            class="text-sm text-white/60 hover:text-white relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-gradient-to-r after:from-[var(--particle-secondary)] after:to-[var(--particle-tertiary)] hover:after:w-full after:transition-all"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Live Demo
-          </a>
-        )}
-      </div>
-    </div>
-  </article>
-)}
-
-{/* Design 6: Bauhaus Card */}
-{design === 6 && (
-  <article
-    class="group border-2 border-black bg-white animate-fadeInUp hover:shadow-[8px_8px_0_0_rgba(0,0,0,1)] transition-shadow"
-    style={`animation-delay: ${index * 0.1}s`}
-  >
-    {/* Color Header Bar */}
-    <div class={`h-4 ${index % 3 === 0 ? 'bg-[var(--bauhaus-red)]' : index % 3 === 1 ? 'bg-[var(--bauhaus-blue)]' : 'bg-[var(--bauhaus-yellow)]'}`}></div>
-    
-    <div class="p-6 md:p-8">
-      <div class="flex items-start justify-between mb-4">
-        <span class="font-mono text-xs uppercase tracking-widest text-[var(--text-muted)]">
-          {String(index + 1).padStart(2, '0')} — {data.category}
-        </span>
-        <div class={`w-6 h-6 ${index % 2 === 0 ? 'bg-black' : 'border-2 border-black rotate-45'}`}></div>
-      </div>
-      
-      <h3 class="font-['Space_Grotesk'] text-2xl md:text-3xl font-bold mb-4 leading-tight">
-        {data.title}
-      </h3>
-      
-      <p class="text-[var(--text-secondary)] mb-6 leading-relaxed">
-        {data.description}
-      </p>
-      
-      {/* Tech Tags */}
-      <div class="flex flex-wrap gap-2 mb-6">
-        {data.technologies.slice(0, 4).map((tech: string) => (
-          <span class="text-xs font-medium uppercase tracking-wider border border-black px-2 py-1 hover:bg-black hover:text-white transition-colors">
-            {tech}
-          </span>
-        ))}
-      </div>
-      
-      {/* Links */}
-      <div class="flex gap-4 pt-4 border-t border-black/10">
-        {data.github && (
-          <a
-            href={data.github}
-            class="text-sm font-medium uppercase tracking-wider hover:underline underline-offset-4"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Code →
-          </a>
-        )}
-        {data.demo && (
-          <a
-            href={data.demo}
-            class="text-sm font-medium uppercase tracking-wider hover:underline underline-offset-4 text-[var(--bauhaus-red)]"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Live Demo →
-          </a>
-        )}
-      </div>
-    </div>
-  </article>
-)}
-
-{/* Design 7: Swiss/International Typographic Card */}
-{design === 7 && (
-  <article
-    class="group animate-fadeInUp"
-    style={`animation-delay: ${index * 0.08}s`}
-  >
-    <div class="grid md:grid-cols-12 gap-4 md:gap-8 py-8 border-b border-black/10">
-      {/* Index & Category */}
-      <div class="md:col-span-2">
-        <span class="font-mono text-xs uppercase tracking-widest text-[var(--text-muted)]">
-          {String(index + 1).padStart(2, '0')}
-        </span>
-        <div class="mt-2 w-8 h-px bg-[var(--accent-red)]"></div>
-      </div>
-      
-      {/* Main Content */}
-      <div class="md:col-span-7">
-        <span class="text-xs uppercase tracking-[0.3em] text-[var(--text-muted)] mb-2 block">
-          {data.category}
-        </span>
-        <h3 class="text-xl md:text-2xl font-bold uppercase tracking-wide mb-4 group-hover:text-[var(--accent-red)] transition-colors">
-          {data.title}
-        </h3>
-        <p class="text-[var(--text-secondary)] leading-relaxed max-w-lg">
-          {data.description}
-        </p>
-      </div>
-      
-      {/* Sidebar */}
-      <div class="md:col-span-3 flex flex-col justify-between">
-        <div class="flex flex-wrap gap-2 mb-4">
-          {data.technologies.slice(0, 3).map((tech: string) => (
-            <span class="text-[10px] uppercase tracking-widest text-[var(--text-muted)]">
-              {tech}
-            </span>
-          ))}
-        </div>
-        
-        <div class="flex gap-6 mt-4 md:mt-0">
-          {data.github && (
-            <a
-              href={data.github}
-              class="text-xs font-bold uppercase tracking-widest hover:text-[var(--accent-red)] transition-colors"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              [GITHUB]
-            </a>
-          )}
-          {data.demo && (
-            <a
-              href={data.demo}
-              class="text-xs font-bold uppercase tracking-widest hover:text-[var(--accent-red)] transition-colors"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              [DEMO]
-            </a>
-          )}
-        </div>
-      </div>
-    </div>
-  </article>
-)}
-
-{/* Design 8: Hybrid Brutalist/Bauhaus Card */}
-{design === 8 && (
-  <article
-    class="group border-4 border-black bg-white animate-fadeInUp hover:translate-x-2 hover:-translate-y-2 transition-transform duration-150"
-    style={`animation-delay: ${index * 0.1}s; box-shadow: 8px 8px 0 0 black;`}
-  >
-    {/* Color Header Bar - Bauhaus style */}
-    <div class={`h-4 ${index % 3 === 0 ? 'bg-[var(--bauhaus-red)]' : index % 3 === 1 ? 'bg-[var(--bauhaus-blue)]' : 'bg-[var(--bauhaus-yellow)]'}`}></div>
-    
-    {/* Header - Brutalist style */}
-    <div class="border-b-4 border-black p-4 bg-[var(--accent-raw)] flex justify-between items-center">
-      <span class="font-[Archivo_Black] text-lg uppercase text-black">
-        {String(index + 1).padStart(2, '0')}
-      </span>
-      <span class="font-bold uppercase text-sm font-['Space_Grotesk'] text-black">
-        {data.category}
-      </span>
-    </div>
-    
-    <div class="p-6">
-      <h3 class="font-[Archivo_Black] text-2xl md:text-3xl uppercase mb-4 leading-tight">
-        {data.title}
-      </h3>
-      
-      <p class="text-lg mb-6 leading-snug font-['Space_Grotesk'] text-[var(--text-secondary)]">
-        {data.description}
-      </p>
-      
-      <div class="flex flex-wrap gap-2 mb-6">
-        {data.technologies.map((tech: string) => (
-          <span class="bg-black text-white px-3 py-1 text-sm font-bold uppercase font-['Space_Grotesk']">
-            {tech}
-          </span>
-        ))}
-      </div>
-      
-      <div class="flex gap-4">
-        {data.github && (
-          <a
-            href={data.github}
-            class="inline-block border-4 border-black px-4 py-2 font-bold uppercase hover:bg-black hover:text-white transition-colors font-['Space_Grotesk']"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            CODE →
-          </a>
-        )}
-        {data.demo && (
-          <a
-            href={data.demo}
-            class="inline-block bg-[var(--bauhaus-yellow)] border-4 border-black px-4 py-2 font-bold uppercase hover:bg-black hover:text-[var(--bauhaus-yellow)] transition-colors font-['Space_Grotesk']"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            DEMO →
-          </a>
-        )}
-      </div>
-    </div>
-  </article>
-)}
-
-{/* Design 9: VHS Cassette Card */}
-{design === 9 && (
-  <article
-    class="group bg-[var(--bg-card)] border-2 border-[var(--text-muted)]/30 animate-fadeInUp hover:border-[var(--vhs-gold)] transition-colors"
-    style={`animation-delay: ${index * 0.1}s`}
-  >
-    {/* VHS Header */}
-    <div class="border-b-2 border-[var(--text-muted)]/30 p-4 flex justify-between items-center bg-[var(--bg-secondary)]">
-      <div class="flex items-center gap-3">
-        <span class="font-['JetBrains_Mono'] text-xs text-[var(--vhs-cinnabar)]">VHS</span>
-        <span class="font-['Inter'] font-bold text-sm text-[var(--text-primary)]">{String(index + 1).padStart(2, '0')}</span>
-      </div>
-      <span class="font-['JetBrains_Mono'] text-xs text-[var(--text-muted)]">E-120</span>
-    </div>
-    
-    {/* Cover Image Area */}
-    <div class="relative aspect-video bg-black overflow-hidden">
-      {/* Placeholder for project image - using gradient as fallback */}
-      <div class="absolute inset-0" style={`background: linear-gradient(135deg, ${index % 2 === 0 ? 'var(--vhs-ocean)' : 'var(--vhs-cinnabar)'} 0%, var(--bg-primary) 100%); opacity: 0.5;`}></div>
-      
-      {/* Project title overlay */}
-      <div class="absolute inset-0 flex items-center justify-center p-6">
-        <h3 class="font-['Inter'] font-black text-xl md:text-2xl text-white uppercase text-center leading-tight drop-shadow-lg">
-          {data.title}
-        </h3>
-      </div>
-      
-      {/* Scanline overlay */}
-      <div class="absolute inset-0" style="background: repeating-linear-gradient(0deg, rgba(0,0,0,0.3) 0px, transparent 1px, transparent 3px); background-size: 100% 4px;"></div>
-      
-      {/* Category badge */}
-      <div class="absolute top-2 right-2 px-2 py-1 bg-[var(--vhs-cinnabar)] text-white font-['JetBrains_Mono'] text-xs">
-        {data.category.toUpperCase()}
-      </div>
-    </div>
-    
-    {/* Content */}
-    <div class="p-4">
-      <p class="font-['Inter'] text-sm text-[var(--text-secondary)] mb-4 line-clamp-2">
-        {data.description}
-      </p>
-      
-      {/* Tech specs */}
-      <div class="flex flex-wrap gap-2 mb-4">
-        {data.technologies.slice(0, 3).map((tech: string) => (
-          <span class="font-['JetBrains_Mono'] text-xs text-[var(--vhs-gold)] bg-[var(--bg-primary)] px-2 py-1 border border-[var(--text-muted)]/20">
-            {tech}
-          </span>
-        ))}
-      </div>
-      
-      {/* Links */}
-      <div class="flex gap-3 pt-3 border-t border-[var(--text-muted)]/20">
-        {data.github && (
-          <a
-            href={data.github}
-            class="font-['JetBrains_Mono'] text-xs text-[var(--text-muted)] hover:text-[var(--vhs-gold)] transition-colors"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            [SOURCE]
-          </a>
-        )}
-        {data.demo && (
-          <a
-            href={data.demo}
-            class="font-['JetBrains_Mono'] text-xs text-[var(--text-muted)] hover:text-[var(--vhs-gold)] transition-colors"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            [PLAY]
-          </a>
-        )}
-      </div>
-    </div>
-    
-    {/* Bottom accent stripe */}
-    <div class="h-1 w-full bg-[var(--vhs-cinnabar)]"></div>
-  </article>
-)}
+  </div>
+  
+  {/* Bottom accent stripe */}
+  <div class="h-1 w-full bg-[var(--color-vhs-cinnabar)]"></div>
+</article>

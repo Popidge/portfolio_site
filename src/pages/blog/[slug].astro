@@ -1,0 +1,193 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navigation from '../../components/Navigation.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection, getEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts
+    .filter(post => !post.data.draft)
+    .map(post => ({
+      params: { slug: post.slug },
+      props: { post },
+    }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+// Get other posts for "More posts" section
+const allPosts = await getCollection('blog');
+const otherPosts = allPosts
+  .filter(p => !p.data.draft && p.slug !== post.slug)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 2);
+
+const formattedDate = post.data.date.toLocaleDateString('en-GB', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+---
+
+<BaseLayout title={`${post.data.title} — Blog`} description={post.data.excerpt || `Blog post by Jamie Taylor`}>
+  
+  <div class="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] relative overflow-hidden">
+    <!-- Analog noise overlay -->
+    <div class="fixed inset-0 pointer-events-none z-50 opacity-[0.03]" style="background-image: url('data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E');"></div>
+    
+    <!-- Scanlines -->
+    <div class="fixed inset-0 pointer-events-none z-40" style="background: repeating-linear-gradient(0deg, rgba(0,0,0,0.1) 0px, transparent 1px, transparent 2px); background-size: 100% 4px;"></div>
+    
+    <Navigation currentPath="/blog" />
+    
+    <!-- ARTICLE HEADER -->
+    <header class="pt-32 pb-8 px-4 md:px-8 relative">
+      <div class="max-w-4xl mx-auto">
+        <!-- Breadcrumb -->
+        <div class="flex items-center gap-2 mb-8 font-['JetBrains_Mono'] text-xs text-[var(--text-muted)]">
+          <a href="/blog" class="hover:text-[var(--color-vhs-gold)] transition-colors">[BLOG]</a>
+          <span>/</span>
+          <span class="text-[var(--text-secondary)]">ENTRY</span>
+        </div>
+        
+        <!-- Title section -->
+        <div class="border-b-2 border-[var(--text-muted)]/30 pb-8">
+          <!-- Meta line -->
+          <div class="flex flex-wrap items-center gap-4 mb-6">
+            <span class="font-['JetBrains_Mono'] text-xs text-[var(--color-vhs-ocean)] bg-[var(--bg-card)] px-2 py-1 border border-[var(--text-muted)]/20">
+              {formattedDate.toUpperCase()}
+            </span>
+            {post.data.tags.map(tag => (
+              <span class="font-['JetBrains_Mono'] text-xs text-[var(--color-vhs-gold)]">
+                #{tag}
+              </span>
+            ))}
+          </div>
+          
+          <!-- Title -->
+          <h1 class="font-['Inter'] font-black text-3xl md:text-5xl text-[var(--text-primary)] uppercase leading-tight tracking-tight">
+            {post.data.title}
+          </h1>
+          
+          <!-- VHS timestamp decoration -->
+          <div class="flex items-center gap-3 mt-6">
+            <div class="flex gap-1">
+              {[...Array(4)].map((_, i) => (
+                <span class="w-2 h-2 rounded-full bg-[var(--color-vhs-cinnabar)]"></span>
+              ))}
+            </div>
+            <span class="font-['Noto_Sans_JP'] text-xs text-[var(--text-muted)]">記録</span>
+            <span class="font-['JetBrains_Mono'] text-xs text-[var(--text-muted)]">
+              TIMESTAMP: {post.data.date.toISOString().split('T')[0].split('-').join('')}
+            </span>
+          </div>
+        </div>
+      </div>
+    </header>
+    
+    <!-- ARTICLE CONTENT -->
+    <article class="py-8 px-4 md:px-8">
+      <div class="max-w-4xl mx-auto">
+        <div class="prose prose-invert prose-lg max-w-none">
+          <!-- Custom prose styles for VHS aesthetic -->
+          <div class="article-content">
+            <Content />
+          </div>
+        </div>
+        
+        <!-- Article footer -->
+        <div class="mt-16 pt-8 border-t-2 border-[var(--text-muted)]/30">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-4">
+              <span class="font-['JetBrains_Mono'] text-xs text-[var(--text-muted)]">
+                END OF ENTRY
+              </span>
+              <div class="flex gap-1">
+                <span class="w-2 h-2 rounded-full bg-[var(--color-vhs-cinnabar)]"></span>
+                <span class="w-2 h-2 rounded-full bg-[var(--color-vhs-ocean)]"></span>
+                <span class="w-2 h-2 rounded-full bg-[var(--color-vhs-gold)]"></span>
+              </div>
+            </div>
+            
+            <span class="font-['Noto_Sans_JP'] text-xs text-[var(--text-muted)]">
+              以上です
+            </span>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <!-- MORE POSTS SECTION -->
+    {otherPosts.length > 0 && (
+      <section class="py-16 px-4 md:px-8 bg-[var(--bg-secondary)]">
+        <div class="max-w-6xl mx-auto">
+          <div class="flex items-center justify-between mb-8">
+            <h2 class="font-['Inter'] font-black text-2xl text-[var(--text-primary)] uppercase">
+              MORE RECORDINGS
+            </h2>
+            <a 
+              href="/blog" 
+              class="font-['JetBrains_Mono'] text-xs text-[var(--text-muted)] hover:text-[var(--color-vhs-gold)] transition-colors"
+            >
+              [VIEW ALL →]
+            </a>
+          </div>
+          
+          <div class="grid md:grid-cols-2 gap-8">
+            {otherPosts.map((otherPost, index) => (
+              <article class="group bg-[var(--bg-card)] border-2 border-[var(--text-muted)]/30 hover:border-[var(--color-vhs-gold)] transition-colors">
+                <div class="border-b-2 border-[var(--text-muted)]/30 p-4 flex justify-between items-center bg-[var(--bg-primary)]">
+                  <span class="font-['JetBrains_Mono'] text-xs text-[var(--color-vhs-ocean)]">
+                    LOG-{String(index + 1).padStart(2, '0')}
+                  </span>
+                  <span class="font-['JetBrains_Mono'] text-xs text-[var(--text-muted)]">
+                    {otherPost.data.date.toISOString().split('T')[0].split('-').join('.')}
+                  </span>
+                </div>
+                
+                <div class="p-6">
+                  <h3 class="font-['Inter'] font-bold text-lg text-[var(--text-primary)] mb-3 group-hover:text-[var(--color-vhs-gold)] transition-colors">
+                    <a href={`/blog/${otherPost.slug}`} class="no-underline">
+                      {otherPost.data.title}
+                    </a>
+                  </h3>
+                  
+                  <p class="font-['Inter'] text-sm text-[var(--text-secondary)] line-clamp-2">
+                    {otherPost.data.excerpt || otherPost.body?.slice(0, 120).split('').filter(c => !['#', '*', '_', '`'].includes(c)).join('') + '...'}
+                  </p>
+                </div>
+                
+                <div class="h-1 w-full bg-[var(--color-vhs-ocean)]"></div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+    
+    <!-- BACK NAVIGATION -->
+    <section class="py-12 px-4 md:px-8">
+      <div class="max-w-4xl mx-auto flex justify-between items-center">
+        <a 
+          href="/blog" 
+          class="inline-flex items-center gap-3 font-['JetBrains_Mono'] text-xs text-[var(--text-muted)] hover:text-[var(--color-vhs-gold)] transition-colors"
+        >
+          <span>←</span>
+          <span>[BACK TO ARCHIVE]</span>
+        </a>
+        
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-3 font-['JetBrains_Mono'] text-xs text-[var(--text-muted)] hover:text-[var(--color-vhs-gold)] transition-colors"
+        >
+          <span>[RETURN HOME]</span>
+          <span>→</span>
+        </a>
+      </div>
+    </section>
+    
+    <Footer />
+  </div>
+</BaseLayout>

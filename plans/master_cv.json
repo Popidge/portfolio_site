@@ -1,0 +1,128 @@
+{
+  "name": "Jamie",
+  "surname": "Taylor",
+  "email": "j.taylor.1990@gmail.com",
+  "phone": "+44 07804550486",
+  "github": "github.com/popidge",
+  "linkedin": "https://www.linkedin.com/in/jamie-taylor-52914950/",
+  "summary": "A versatile, systems-driven technical professional with a unique blend of hardware operations, software engineering, and AI/ML innovation. Background spans high-stakes Civil Service data management, real-time VR systems administration, and full-stack development. Proven track record in maintaining complex hardware/software integrations, building production-ready AI applications, and delivering exceptional customer service. Combines a rigorous analytical mindset (BSc Chemistry) with a pragmatic, automation-first approach to problem-solving. Passionate about building operator-friendly solutions that bridge the gap between physical systems and modern cloud architecture.",
+  "experience": [
+    {
+      "title": "Lead VR Operative",
+      "company": "Teamsport Karting / RoamDome Ltd",
+      "dates": "April 2024 – January 2026",
+      "achievements": [
+        "Primary technical contact for full-body VR arena, maintaining HP & Optitrack equipment with 99.9% uptime",
+        "Responsible for training new staff on technical operations and customer service protocols",
+        "Achieved 5-star public review ratings for technical professionalism and service quality",
+        "Managed hardware inventory, thermal/power systems, and real-time networking diagnostics",
+        "Provided front-of-house customer service for busy indoor go-kart track, including NKA marshal training"
+      ]
+    },
+    {
+      "title": "Customer Service Advisor (Seasonal)",
+      "company": "Boots UK Ltd",
+      "dates": "Nov 2023 – Jan 2024",
+      "achievements": [
+        "Delivered high-quality customer service during peak festive period, maintaining GDPR compliance",
+        "Consistently achieved high call quality and handling time targets",
+        "Processed high-volume online orders with 100% data accuracy"
+      ]
+    },
+    {
+      "title": "Service Desk Engineer (1st Line)",
+      "company": "Jigsaw24",
+      "dates": "April 2022 - August 2022",
+      "achievements": [
+        "Provided 1st-line technical support in MSP environment for education and business clients",
+        "Administered Apple (Jamf Pro, trained to 200 level) and Microsoft environments via Partner portals",
+        "Managed and resolved support tickets through ServiceNow, ensuring SLA compliance",
+        "Handled Active Directory user management and device provisioning"
+      ]
+    },
+    {
+      "title": "Higher Registration Executive",
+      "company": "HM Land Registry",
+      "dates": "November 2015 - December 2021",
+      "achievements": [
+        "Middle-management role in Civil Service, responsible for registering complex land transactions",
+        "Made risk-based decisions on applications with higher technical authority",
+        "Trained and developed lower-grade employees through casework referral and training sessions",
+        "Ensured 100% data accuracy and integrity in high-stakes legal documentation",
+        "Delivered on KPIs of quality, speed, and integrity in a regulated environment"
+      ]
+    },
+    {
+      "title": "Broadcast Assistant/Producer (Freelance)",
+      "company": "BBC Radio Leicester",
+      "dates": "April 2015 - January 2017",
+      "achievements": [
+        "Operated broadcast desks for live and recorded transmissions",
+        "Produced resources for on-air presenters and assisted with popular show production",
+        "Developed excellent grammar and copywriting skills for professional broadcast content"
+      ]
+    },
+    {
+      "title": "Executive Producer & Presenter (Voluntary)",
+      "company": "Radio2Funky",
+      "dates": "October 2015",
+      "achievements": [
+        "Executive producer for youth radio shows, guiding 16-18 year olds in producing professional-quality programmes",
+        "Regular on-air presenter for drivetime and breakfast shows"
+      ]
+    },
+    {
+      "title": "Production Administrator",
+      "company": "Pipi Print & Packaging Ltd",
+      "dates": "May 2014 - October 2015",
+      "achievements": [
+        "Primary administrator for small print business, processing incoming orders",
+        "Reduced admin error rates to an all-time low through improved processes",
+        "Deputised for production manager, managing end-to-end order fulfillment",
+        "Handled picking, packing, and dispatching of customer orders",
+        "Maintained accurate shipping records and liaised with logistics partners"
+      ]
+    }
+  ],
+  "skills": {
+    "Languages": "Python, TypeScript, JavaScript, Rust, SQL",
+    "Frameworks": "Next.js, React, FastAPI, LangChain, LlamaIndex, Convex, Tailwind CSS",
+    "AI/ML": "LLM Orchestration, OpenRouter, RAG, Multi-agent Workflows, Prompt Engineering, Tool Calling, JSON Schema Enforcement",
+    "Cloud & DevOps": "Azure AD Concepts, Microsoft 365, Entra ID, Git, Docker, Serverless Architecture, CI/CD",
+    "Databases": "PostgreSQL, Convex, MongoDB concepts",
+    "Hardware & Networking": "VR Systems (HP, Optitrack), Network Troubleshooting, Structured Cabling, Hardware Procurement, Device Compliance",
+    "IT Support": "CompTIA A+, Jamf Pro (200 level), Active Directory, SSO/OIDC, ServiceNow, SLA Management",
+    "Data Management": "Data Cleansing, GDPR Compliance, Data Analysis, Excel Advanced, Process Optimisation",
+    "Soft Skills": "Technical Documentation, Stakeholder Management, Training & Development, Customer Service, Broadcast Production"
+  },
+  "education": [
+    {
+      "degree": "BSc (Hons) Chemistry",
+      "university": "University of Leicester",
+      "year": "2008-2012 (2.1)"
+    },
+    {
+      "degree": "A-Level Chemistry (A), Physics (B), Human Biology (C), AS Mathematics (B)",
+      "university": "City of Wolverhampton College",
+      "year": "2006-2008"
+    },
+    {
+      "degree": "GCSEs: Maths (A*), Statistics (A), English Language (A), English Literature (B), Chemistry (A), Physics (B), Biology (B), Resistant Materials (B), Music (A), Drama (B), GNVQ Intermediate ICT (Merit)",
+      "university": "Wednesfield High School",
+      "year": "2002-2006"
+    },
+    {
+      "degree": "CompTIA A+ Certification",
+      "university": "Professional Certification",
+      "year": "March 2022"
+    }
+  ],
+  "tone_samples": [
+    "Professional yet approachable, with a dry British wit",
+    "Direct about achievements with concrete metrics and outcomes",
+    "Pragmatic and systems-driven, allergic to corporate fluff",
+    "Clear communicator who can translate technical concepts for non-technical audiences",
+    "Honest about gaps and limitations, but confident in ability to learn and adapt",
+    "Friendly, curious, and creative problem-solver with a safety-first mindset"
+  ]
+}
