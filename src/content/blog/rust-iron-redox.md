@@ -12,7 +12,7 @@ If you've seen my [Journal of AI Slop](https://journalofaislop.com) project, you
 
 I think AI in research is a powerful accelerator, but it's current misuse, lack of transparency and general attitude towards it needs a lot of work.
 
-When I created the Journal, part of the idea behind it was to hold up a mirror to modern-day academia - tired grad students, overstretched supervisors, all using AI in a *hush-hush*, cloak-and-dagger way, spending more time trying to hide it than actually addressing how to use it **responsibly**. By simultaneously having a low bar to entry (anyone can publish), with one strict enforcement (your submission must credit an AI as an author/co-author), it made a ludicrous statement for transparency in the AI age. Having AI models then publically peer-review the contributions, with the only real rigour being "is it AI Slop?" - that was just plain funny.
+When I created the Journal, part of the idea behind it was to hold up a mirror to modern-day academia - tired grad students, overstretched supervisors, all using AI in a *hush-hush*, cloak-and-dagger way, spending more time trying to hide it than actually addressing how to use it **responsibly**. By simultaneously having a low bar to entry (anyone can publish), with one strict enforcement (your submission must credit an AI as an author/co-author), it made a ludicrous statement for transparency in the AI age. Having AI models then publicly peer-review the contributions, with the only real rigour being "is it AI Slop?" - that was just plain funny.
 
 I finally had an opportunity to put my money where my mouth was with a recent bit of research into AI-generated code, leading to me [authoring a whitepaper](https://doi.org/10.5281/zenodo.18528387) and including the following statement:
 
@@ -95,13 +95,13 @@ end function
 
 ### Does it work?
 
-I finetuned a Qwen-3-4B-Instruct model with matchng rust/iron synthetic datasets, and evalueated performance on identical coding problems.
+I finetuned a Qwen-3-4B-Instruct model with matching rust/iron synthetic datasets, and evaluated performance on identical coding problems.
 
 From the whitepaper: "Across controlled experiments, a 4B parameter model trained on Iron achieved
 96.7% compile rate and 96.7% test pass rate, versus 71.7% for equivalent Rust training—a
 relative improvement of 35% in functional correctness."
 
-So, from early testing - **yes**. There's still a lot mroe to look at - covering more of the Rust featureset, making sure the transpiler works properly with real-world code, improving the training data and making sure it maintains the improvement, seeing if larger models respond as well to it.
+So, from early testing - **yes**. There's still a lot more to look at - covering more of the Rust featureset, making sure the transpiler works properly with real-world code, improving the training data and making sure it maintains the improvement, seeing if larger models respond as well to it.
 
 ## Read the whitepaper.
 
