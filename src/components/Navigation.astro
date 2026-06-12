@@ -28,6 +28,15 @@ const { currentPath = '/' } = Astro.props;
         HOME
       </a>
       <a 
+        href="/fund-me" 
+        class:list={[
+          "font-['JetBrains_Mono'] text-xs px-2 py-1 transition-colors",
+          currentPath === '/fund-me' ? "text-[var(--color-vhs-gold)]" : "text-[var(--text-secondary)] hover:text-[var(--color-vhs-gold)]"
+        ]}
+      >
+        FUND
+      </a>
+      <a 
         href="/blog" 
         class:list={[
           "font-['JetBrains_Mono'] text-xs px-2 py-1 transition-colors",
